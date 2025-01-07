@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "hemophilia",
+  "version": "${version}",
+  "name": "Hemophilia",
+  "description": "Slight rework of the healing system of the game",
+  "authors": [],
+  "contact": {},
+  "license": "BSD-3-Clause",
+  "icon": "assets/hemophilia/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.jaegyu.hemophilia.client.HemophiliaClient"
+    ],
+    "main": [
+      "dev.jaegyu.hemophilia.Hemophilia"
+    ]
+  },
+  "mixins": [
+    "hemophilia.mixins.json",
+    {
+      "config": "hemophilia.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.jaegyu.hemophilia.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "FoodsMixin",
+    "ItemStackMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
