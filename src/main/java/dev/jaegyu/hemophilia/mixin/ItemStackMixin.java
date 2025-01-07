@@ -1,27 +1,28 @@
 package dev.jaegyu.hemophilia.mixin;
 
 import dev.jaegyu.hemophilia.event.ItemUsedCallback;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.At;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.World;
+import net.minecraft.entity.LivingEntity;
 
 
 @Mixin(ItemStack.class)
 public class ItemStackMixin {
 
-    @Redirect(method = "finishUsingItem",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;finishUsingItem(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;)Lnet/minecraft/world/item/ItemStack;"))
-    private ItemStack redirectFinishUsingItem(Item instance, ItemStack itemStack, Level level, LivingEntity livingEntity) {
-        if (livingEntity instanceof ServerPlayer) {
-            ItemUsedCallback.ITEM_USED.invoker().onItemUsed((ServerPlayer) livingEntity, itemStack);
+    @Redirect(method = "finishUsing",
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/item/Item;finishUsing(Lnet/minecraft/item/ItemStack;Lnet/minecraft/world/World;Lnet/minecraft/entity/LivingEntity;)Lnet/minecraft/item/ItemStack;"))
+    private ItemStack redirectFinishUsingItem(Item instance, ItemStack itemStack, World level, LivingEntity livingEntity) {
+
+        if (livingEntity instanceof ServerPlayerEntity) {
+            ItemUsedCallback.ITEM_USED.invoker().onItemUsed((ServerPlayerEntity) livingEntity, itemStack);
         }
 
-        return instance.finishUsingItem(itemStack, level, livingEntity);
+        return instance.finishUsing(itemStack, level, livingEntity);
     }
 }
 
