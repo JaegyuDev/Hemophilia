@@ -45,7 +45,7 @@ public class StateSaverAndLoader extends PersistentState {
         return state;
     }
 
-    private static Type<StateSaverAndLoader> type = new Type<>(
+    private static final Type<StateSaverAndLoader> type = new Type<>(
             StateSaverAndLoader::new, // If there's no 'StateSaverAndLoader' yet create one
             StateSaverAndLoader::createFromNbt, // If there is a 'StateSaverAndLoader' NBT, parse it with 'createFromNbt'
             null // Supposed to be an 'DataFixTypes' enum, but we can just pass null

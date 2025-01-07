@@ -3,7 +3,7 @@ package dev.jaegyu.hemophilia;
 
 // TODO: Replace this with a registry style implementation
 
-public enum HealingSource {
+public enum HealingType {
     GOLDEN_CARROT(),
     GOLDEN_APPLE(),
     ENCHANTED_GOLDEN_APPLE(),

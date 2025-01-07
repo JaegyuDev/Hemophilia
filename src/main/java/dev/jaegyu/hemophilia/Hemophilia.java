@@ -15,11 +15,9 @@ public class Hemophilia implements ModInitializer {
         ItemUsedCallback.ITEM_USED.register((player, itemStack) -> {
             if (itemStack.getItem() == Items.GOLDEN_CARROT) {
                 if (player != null) {
-                    // registry impl would cut this down
-                    player.heal(HealingSources.get(HealingSource.GOLDEN_CARROT).healStrength());
+                    player.heal(HealingSources.get(HealingType.GOLDEN_CARROT).healStrength());
                 }
             }
         });
-
     }
 }

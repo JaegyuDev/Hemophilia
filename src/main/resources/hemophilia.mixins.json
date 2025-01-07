@@ -4,8 +4,10 @@
   "package": "dev.jaegyu.hemophilia.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "FoodComponentMixin",
     "FoodsMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
